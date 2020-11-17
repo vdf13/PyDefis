@@ -5,7 +5,7 @@
 
 class PyDefisSW:
     def SW4_Vitesse(x, y, z):
-        list = [] 
+        list = []
         while 10 * x > y:
             x = (y * z) % 10000
             y = (3 * z) % 10000
