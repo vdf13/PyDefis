@@ -14,5 +14,18 @@ class PyDefisSW:
         print(list)
         return list
 
+    def SW4_LunetteAstro(x, y, i):
+        list = []
+        for occ in range(i):
+            x1 = (x + 2 * y) % 2018
+            y1 = (-3 * x + y) % 2018
+            x = x1
+            y = y1
+        dec = (x - 900) / 10
+        asc = (y / 150) * 2
+        list = [dec, asc]
+        return list
+
 
 PyDefisSW.SW4_Vitesse(997, 312, 663)
+PyDefisSW.SW4_LunetteAstro(1694, 1546, 50)
