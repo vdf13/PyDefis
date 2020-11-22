@@ -37,13 +37,40 @@ class PyDefisSW:
         print("Nombre de Ewok sans lettre 'a' ou 'A' :", count)
         return(count)
 
+    def SW7_EwokName2(names):
+        count = 0
+        for name in names:
+            # compter les voyelles
+            voyelle = 0
+            for lettre in name.lower():
+                if lettre == "a" \
+                        or lettre == "e" \
+                        or lettre == "i" \
+                        or lettre == "o" \
+                        or lettre == "u" \
+                        or lettre == "y":
+                    voyelle += 1
+            if ((len(name) - 1) - voyelle) / voyelle == 2:
+                count += 1
+        print("Nombre de Ewoks avec \
+                le double de consonnes dans le nom :", count)
+        return count
+
 
 # SW4 Vitesse lumière
 PyDefisSW.SW4_Vitesse(997, 312, 663)
+
 # SW4 Lunette Astro
 PyDefisSW.SW4_LunetteAstro(1694, 1546, 50)
+
 # SW7 Ewok names
-file_to_open = "ewok_names.txt"
+file_to_open = "fichiers_source//ewok_names.txt"
 with open(file_to_open, "r") as file:
     names = file.readlines()
 PyDefisSW.SW7_EwokName(names)
+
+# SW7 Ewok names 2
+file_to_open = "fichiers_source//ewok_names2.txt"
+with open(file_to_open, "r") as file:
+    names = file.readlines()
+PyDefisSW.SW7_EwokName2(names)

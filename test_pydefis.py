@@ -21,8 +21,14 @@ class TestPyDefisSW:
         i = 50
         assert [44, 4] == script.PyDefisSW.SW4_LunetteAstro(x, y, i)
 
-    # SW VII le noms de Ewoks !
+    # SW VII : le nom de Ewoks !
     # Combien ne contiennent pas de a ou A ?
     def test_SW7_EwokName(self):
         names = ["Albert", "Barnabé", "Chris"]
         assert 1 == script.PyDefisSW.SW7_EwokName(names)
+
+    # SW VII : Le nom des Ewoks 2 !
+    # Combien contiennent 2 fois plus de consonnes que de voyelles ?
+    def test_SW7_EwokName2(self):
+        names = ["Albert", "Barnabé", "Chris"]
+        assert 1 == script.PyDefisSW.SW7_EwokName2(names)
