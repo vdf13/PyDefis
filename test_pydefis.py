@@ -20,3 +20,9 @@ class TestPyDefisSW:
         y = 1546
         i = 50
         assert [44, 4] == script.PyDefisSW.SW4_LunetteAstro(x, y, i)
+
+    # SW VII le noms de Ewoks !
+    # Combien ne contiennent pas de a ou A ?
+    def test_SW7_EwokName(self):
+        names = ["Albert", "Barnabé", "Chris"]
+        assert 1 == script.PyDefisSW.SW7_EwokName(names)
