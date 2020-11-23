@@ -80,12 +80,7 @@ class SW7EwokName2:
             # compter les voyelles
             voyelle = 0
             for lettre in name.lower():
-                if lettre == "a" \
-                        or lettre == "e" \
-                        or lettre == "i" \
-                        or lettre == "o" \
-                        or lettre == "u" \
-                        or lettre == "y":
+                if lettre in "aeiouy":
                     voyelle += 1
             if ((len(name) - 1) - voyelle) / voyelle == 2:
                 count += 1
@@ -103,12 +98,11 @@ class SW1Porte:
     - Epaisseur de la porte = 70 cm
     - Temps pour percer la moitié de la porte ?
     - Temps pour percer la porte entièrement ?
-    - Réponse 2 nombres entiers ex: 10, 24
-    '''
+    - Réponse 2 nombres entiers ex: 10, 24 '''
+
     def __init__(self):
         self.epaisseur_porte = 70
         self.volume_metal = 0
-        self.metal = 0
         self.profondeur_percage = 0
         self.perce = 0
 
@@ -119,8 +113,7 @@ class SW1Porte:
         moitie = False
         while self.profondeur_percage < self.epaisseur_porte:
             self.perce = 3 - 0.005 * self.volume_metal
-            self.metal = 8 * self.perce
-            self.volume_metal += self.metal
+            self.volume_metal += self.perce * 8
             self.profondeur_percage += self.perce
             secondes += 1
             if self.profondeur_percage > self.epaisseur_porte / 2:
