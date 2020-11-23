@@ -13,15 +13,15 @@ class SW4Vitesse:
         self.y = y
         self.z = z
 
-    def Vitesse(self):
-        vitesse = []
+    def vitesse(self):
+        resultat = []
         while 10 * self.x > self.y:
             self.x = (self.y * self.z) % 10000
             self.y = (3 * self.z) % 10000
             self.z = (7 * self.z) % 10000
-        vitesse = [self.x, self.y, self.z]
-        print("SW4 Vitesse : Coordonnées de passage ", vitesse)
-        return vitesse
+        resultat = [self.x, self.y, self.z]
+        print("SW4 Vitesse : Coordonnées de passage ", resultat)
+        return resultat
 
 
 class SW4LunetteAstro:
@@ -33,7 +33,7 @@ class SW4LunetteAstro:
         self.y = y
         self.i = i
 
-    def Calcul(self):
+    def calcul(self):
         astro = []
         for occ in range(self.i):
             x1 = (self.x + 2 * self.y) % 2018
@@ -55,7 +55,7 @@ class SW7EwokName1:
     def __init__(self, names):
         self.names = names
 
-    def NombreA(self):
+    def nombre_A(self):
         count = 0
         for name in self.names:
             if "a" in name.lower():
@@ -74,7 +74,7 @@ class SW7EwokName2:
     def __init__(self, names):
         self.names = names
 
-    def Double_Voyelle(self):
+    def double_voyelle(self):
         count = 0
         for name in self.names:
             # compter les voyelles
@@ -89,29 +89,78 @@ class SW7EwokName2:
                     voyelle += 1
             if ((len(name) - 1) - voyelle) / voyelle == 2:
                 count += 1
-        print("Nombre de Ewoks avec \
+        print("SW7 Ewok Name 2 :Nombre de Ewoks avec \
 le double de consonnes dans le nom :", count)
         return count
 
 
+class SW1Porte:
+    ''' Classe définissant l'ojet du pydéfis A l'assaut de Gunray, découpage porte
+    - E = épaisseur que le sabre perce durant 1 seconde
+    - Volume métal en fusion V = 8*E en cm3 : initial V=0
+    - E = 3-0.005*V Epaisseur après 1 seconde: initial E=0:
+    - 1s E=3 V=24 : 2s E=5.88 V=47.04 : 3s E=8.6448 V=69.1584
+    - Epaisseur de la porte = 70 cm
+    - Temps pour percer la moitié de la porte ?
+    - Temps pour percer la porte entièrement ?
+    - Réponse 2 nombres entiers ex: 10, 24
+    '''
+    def __init__(self):
+        self.epaisseur_porte = 70
+        self.volume_metal = 0
+        self.metal = 0
+        self.profondeur_percage = 0
+        self.perce = 0
+
+    def percage(self):
+        ''' Formule E = 3 - 0.005 * V '''
+        secondes = 0
+        resultat = []
+        moitie = False
+        while self.profondeur_percage < self.epaisseur_porte:
+            self.perce = 3 - 0.005 * self.volume_metal
+            self.metal = 8 * self.perce
+            self.volume_metal += self.metal
+            self.profondeur_percage += self.perce
+            secondes += 1
+            if self.profondeur_percage > self.epaisseur_porte / 2:
+                if moitie is True:
+                    pass
+                else:
+                    # Nombre de secondes pour la moitié de la porte
+                    resultat.append(secondes)
+                    moitie = True
+        # On obtient le nombre de secondes pour la port entière
+        resultat.append(secondes)
+        print("SW1 Percage de la porte : \
+moitié / complet en secondes :", resultat)
+        return resultat
+
+
+# ##### Partie Principale, appel des objets #####
+
 # SW4 Vitesse lumière
 resultat = SW4Vitesse(997, 312, 663)
-print(resultat.Vitesse())
+print(resultat.vitesse())
 
 # SW4 Lunette Astro
 resultat = SW4LunetteAstro(1694, 1546, 50)
-print(resultat.Calcul())
+print(resultat.calcul())
 
 # SW7 Ewok names I
 file_to_open = "fichiers_source//ewok_names.txt"
 with open(file_to_open, "r") as file:
     names = file.readlines()
 resultat = SW7EwokName1(names)
-print(resultat.NombreA())
+print(resultat.nombre_A())
 
 # SW7 Ewok names 2
 file_to_open = "fichiers_source//ewok_names2.txt"
 with open(file_to_open, "r") as file:
     names = file.readlines()
 resultat = SW7EwokName2(names)
-print(resultat.Double_Voyelle())
+print(resultat.double_voyelle())
+
+# SW1 Percage Porte Gunray
+resultat = SW1Porte()
+print(resultat.percage())
