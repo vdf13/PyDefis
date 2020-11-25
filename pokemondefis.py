@@ -40,15 +40,20 @@ class Pokemon:
                 cc = mot.split(",")
                 cc.append(0)
                 if cc[0] in poke.keys():
-                    poke[cc[0]] = (cc[1], cc[2], cc[3] + 1)
+                    val = poke[cc[0]]
+                    val[2] += 1
+                    poke[cc[0]] = val
                 else:
-                    poke[cc[0]] = (cc[1], cc[2], cc[3])
-        for key, value in poke.items():
-            if 0 in value:
-                self.result = key, value
+                    poke[cc[0]] = [cc[1], cc[2], cc[3]]
+        poke1 = sorted(poke.items(), key=lambda t: t[1][2])
+        self.result = poke1[0]
         return self.result
 
 
-fichier = 'https://pydefis.callicode.fr/defis/PokePlusRare/input'
-poke_rare = Pokemon(fichier)
+fichier1 = 'https://pydefis.callicode.fr/defis/PokePlusRare/input'
+poke_rare = Pokemon(fichier1)
 print(poke_rare.result)
+
+fichier2 = 'https://pydefis.callicode.fr/defis/PokePlusRare2/input'
+poke_plus_rare = Pokemon(fichier2)
+print(poke_plus_rare.result)

@@ -11,4 +11,4 @@ class Test_Pokemon:
         # On crée une instance de l'objet
         fichier = 'https://pydefis.callicode.fr/defis/PokePlusRare/input'
         resultat = script.Pokemon(fichier)
-        assert ("aflamanoir", ('47', '-115', 0)) == resultat.result
+        assert ("aflamanoir", ['47', '-115', 0]) == resultat.result
