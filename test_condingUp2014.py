@@ -19,6 +19,16 @@ class TestCodingup2014:
         resultat = script.MeliMelo(self.nombre, n)
         assert '3742' == resultat.nombre
 
+    def test_meliMeloBinaire(self):
+        ''' Construire une suite de nombre
+        - le convertir en binaire
+        - Compter le nombre de 1 ++++
+        - test 5 en entrée , 4 itérations == 5871 '''
+        self.nombre = 5
+        n = 4
+        resultat = script.MeliMeloBinaire(self.nombre, n)
+        assert 5871 == resultat.nombre
+
     def test_NombreRiche(self):
         ''' Test de l'ojet NombreRiche et de la méthode calcul() '''
         self.lim_basse = 66

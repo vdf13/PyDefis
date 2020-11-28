@@ -24,6 +24,33 @@ class MeliMelo:
         return self.nombre
 
 
+class MeliMeloBinaire:
+    ''' Construire une suite de nombre après transformation binaire
+    - 34 = 100010 , compter nombre de 1 = 10, ajouter à la fin 10001010 = 138
+    - renouveler 'n' fois
+    - donner le nombre final sous la forme base 10 '''
+
+    def __init__(self, entree, iteration):
+        self.nombre = entree
+        self.n = iteration
+        self.binaire()
+
+    def binaire(self):
+        conv_bin = str(bin(self.nombre))
+        conv_bin = conv_bin[2:]
+        while self.n > 0:
+            count = ''
+            for i in conv_bin:
+                if '1' == i:
+                    count += '1'
+            conv_bin1 = str(bin(len(count)))
+            conv_bin1 = conv_bin1[2:]
+            conv_bin += conv_bin1
+            self.n -= 1
+        self.nombre = int(conv_bin, 2)
+        return self.nombre
+
+
 class NombreRiche:
     ''' Trouver les nombres riches (ayant 1 fois chaque chiffre)
     entre 2 série de nombre
@@ -58,6 +85,10 @@ class NombreRiche:
 
 # Méli Mélo de nombres
 resultat = MeliMelo(2963, 105)
+print(resultat.nombre)
+
+# Meli Melo Binaire
+resultat = MeliMeloBinaire(53, 21)
 print(resultat.nombre)
 
 # Nombre Riche
