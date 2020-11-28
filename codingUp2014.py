@@ -40,11 +40,8 @@ class MeliMeloBinaire:
         conv_bin = conv_bin[2:]
         while self.n > 0:
             count = ''
-            for i in conv_bin:
-                if '1' == i:
-                    count += '1'
-            conv_bin1 = str(bin(len(count)))
-            conv_bin1 = conv_bin1[2:]
+            count = conv_bin.count('1')
+            conv_bin1 = (str(bin(count)))[2:]
             conv_bin += conv_bin1
             self.n -= 1
         self.nombre = int(conv_bin, 2)
