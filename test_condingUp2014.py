@@ -35,3 +35,8 @@ class TestCodingup2014:
         self.lim_haute = 70
         resultat = script.NombreRiche(self.lim_basse, self.lim_haute)
         assert [69] == resultat.nombre
+
+    def test_Einstein(self):
+        ''' Test de l'objet Einstein '''
+        resultat = script.Einstein()
+        assert (2523, 2525, 2527, 2529) == resultat.calcul(300)
